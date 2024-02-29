@@ -1,0 +1,9 @@
+.loginWrapp{
+  display: flex;
+  height: 100vh;
+  justify-items: center;
+  align-items: center;
+  background-color: #f62573;
+  /* background-color: #00032c;   */
+  /* background-color: url('./shopping-bag-cart.jpg'); */
+}
