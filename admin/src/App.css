@@ -36,7 +36,9 @@
     transform: rotate(360deg);
   }
 }
-
+.center{
+  text-align: center;
+}
 /* Login */
 .loginWrapp{
   display: flex;
@@ -86,7 +88,8 @@
   100% { transform: rotate(360deg); }
 }
 /* dashboard */
-.logo {
+.m-20{
+  margin: 0 20px;
 }
 .logo img{
   width: 210px;
@@ -101,6 +104,7 @@
 .logo ListItem{
   background-color: #db0d58
 }
+.logo 
 #active {
   background-color: #ffe4ee;
   color:#db0d58;
@@ -143,30 +147,29 @@
   font-size: 22px;
   border-radius: 5px;
 }
-.box1{
-  background-color: #25e0ca;
+.categoryBox{
+  background-color: #c9ffff;
   padding: 20px;
   height: 100px;
-  border: 1px solid red
+  text-align: center;
+  line-height: 50px;
+  border-bottom: 2px solid #db0d58;
+  cursor: pointer;
+  font-size: 18px
 }
-.box2{
-  background-color: #7bfb61;
-  padding: 20px;
-  height: 100px;
-  border: 1px solid red
+.categoryBox:hover{
+  background-color: #96fcfc;
 }
-.box3{
-  background-color: #fbf861;
-  padding: 20px;
-  height: 100px;
-  border: 1px solid red
+.display-right{
+  display: flex;
+  justify-content: flex-end
 }
-.box4{
-  background-color: #bd61fb;
-  padding: 20px;
-  height: 100px;
-  border: 1px solid red
+.btn-outline-primary{
+  color: #db0d58!important;
+  border: 1px solid #db0d58!important;
 }
-
+.mb-20{
+  margin-bottom: 20px
+}
 
 

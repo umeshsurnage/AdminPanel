@@ -1,33 +1,67 @@
-import React, { useState } from "react"
+import { React, useState } from "react"
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
 import CssBaseline from "@mui/material/CssBaseline"
 import Drawer from "@mui/material/Drawer"
 import IconButton from "@mui/material/IconButton"
+import ListItem from "@mui/material/ListItem"
+import ListItemButton from "@mui/material/ListItemButton"
+import ListItemIcon from "@mui/material/ListItemIcon"
+import ListItemText from "@mui/material/ListItemText"
 import MenuIcon from "@mui/icons-material/Menu"
 import Toolbar from "@mui/material/Toolbar"
 import Breadcrumbs from "@mui/material/Breadcrumbs"
 import NavigateNextIcon from "@mui/icons-material/NavigateNext"
-import { Link, Route, Routes } from "react-router-dom"
+import { Link, Route, Routes, useNavigate } from "react-router-dom"
 import Dashboard from "./Dashboard"
 import Categories from "./Categories"
-import Sidebar from "./Sidebar"
 
 const drawerWidth = 240
 const Admin = () => {
-  const [activeMenuIndex, setActiveMenuIndex] = useState(0)
-
-  const handleActiveMenuChange = (index) => {
-    setActiveMenuIndex(index)
-  }
-  const [menu, setMenu] = useState("")
-
-  const handleMenuChange = (index) => {
-    setMenu(index[activeMenuIndex].name)
-  }
+  const navigate = useNavigate()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [isClosing, setIsClosing] = useState(false)
-
+  const [active, setActive] = useState(0)
+  const menus = [
+    {
+      name: "Dashboard",
+      icon: <i className='fa-solid fa-gauge-high'></i>,
+    },
+    {
+      name: "Categories",
+      icon: <i className='fa-solid fa-list'></i>,
+      children: [
+        {
+          name: "Main-Category",
+          icon: <i className='fa-solid fa-list'></i>,
+        },
+        {
+          name: "Sub-Category",
+          icon: <i className='fa-solid fa-list'></i>,
+        },
+      ],
+    },
+    {
+      name: "Product",
+      icon: <i className='fa-solid fa-shop'></i>,
+    },
+    {
+      name: "Orders",
+      icon: <i className='fa-solid fa-cart-arrow-down'></i>,
+    },
+    {
+      name: "Users",
+      icon: <i className='fa-solid fa-users'></i>,
+    },
+    {
+      name: "Newsletter",
+      icon: <i className='fa-regular fa-envelope'></i>,
+    },
+    {
+      name: "Setting",
+      icon: <i className='fa-solid fa-gear'></i>,
+    },
+  ]
   const handleDrawerClose = () => {
     setIsClosing(true)
     setMobileOpen(false)
@@ -42,18 +76,41 @@ const Admin = () => {
       setMobileOpen(!mobileOpen)
     }
   }
-
+  const onActive = (index) => {
+    navigate(menus[index].name)
+    setActive(index)
+  }
+  console.log(menus[1].children[0].name)
   const drawer = (
     <div className='logo'>
       <img src='/logo.jpg' alt='Charul Products' />
-      <Sidebar
-        drawerWidth={drawerWidth}
-        handleDrawerTransitionEnd={handleDrawerTransitionEnd}
-        handleDrawerClose={handleDrawerClose}
-        mobileOpen={mobileOpen}
-        menu={handleMenuChange}
-        activeMenu={handleActiveMenuChange}
-      ></Sidebar>
+      {menus.map((data, index) => (
+        <>
+          <ListItem key={data} disablePadding>
+            <ListItemButton
+              id={active === index ? "active" : ""}
+              onClick={() => onActive(index)}
+            >
+              <ListItemIcon>{data.icon}</ListItemIcon>
+              <ListItemText primary={data.name} />
+            </ListItemButton>
+          </ListItem>
+          {menus.children &&
+            menus.children.map((child) => {
+              return (
+                <ListItem key={data} disablePadding>
+                  <ListItemButton
+                    id={active === index ? "active" : ""}
+                    onClick={() => onActive(index)}
+                  >
+                    <ListItemIcon>{data.icon}</ListItemIcon>
+                    <ListItemText primary={data.name} />
+                  </ListItemButton>
+                </ListItem>
+              )
+            })}
+        </>
+      ))}
     </div>
   )
   return (
@@ -85,12 +142,12 @@ const Admin = () => {
               <Link
                 to='/Admin/Dashboard'
                 onClick={() => {
-                  activeMenuIndex(0)
+                  setActive(0)
                 }}
               >
                 Home
               </Link>
-              <Link color='white'>{menu}</Link>
+              <Link color='white'>{menus[active].name}</Link>
             </Breadcrumbs>
           </Toolbar>
         </AppBar>
@@ -99,6 +156,7 @@ const Admin = () => {
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
           aria-label='mailbox folders'
         >
+          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Drawer
             variant='temporary'
             open={mobileOpen}
@@ -141,19 +199,11 @@ const Admin = () => {
         >
           <Routes>
             <Route path='/Dashboard' element={<Dashboard></Dashboard>}></Route>
-
-            <Route path='/' element={<Dashboard></Dashboard>}></Route>
             <Route
-              path='/Categories/*'
-              element={<Categories></Categories>}
-              // element={<Navigate to='/Categories/MainCategory' />}
-            ></Route>
-
-            {/* <Route
               path='/Categories'
-              element={<Navigate to='/Categories' />}
-            ></Route> */}
-
+              element={<Categories></Categories>}
+            ></Route>
+            <Route path='/' element={<Dashboard></Dashboard>}></Route>
             <Route
               path='*'
               element={<div className='center'>Not Found</div>}
