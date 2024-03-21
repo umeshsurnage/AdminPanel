@@ -12,6 +12,8 @@ import { Link, Route, Routes } from "react-router-dom"
 import Dashboard from "./Dashboard"
 import Categories from "./Categories"
 import Sidebar from "./Sidebar"
+import { Product } from "./Product"
+import Orders from "./Orders"
 
 const drawerWidth = 240
 const Admin = () => {
@@ -143,11 +145,14 @@ const Admin = () => {
             <Route path='/Dashboard' element={<Dashboard></Dashboard>}></Route>
 
             <Route path='/' element={<Dashboard></Dashboard>}></Route>
+
             <Route
               path='/Categories/*'
               element={<Categories></Categories>}
-              // element={<Navigate to='/Categories/MainCategory' />}
             ></Route>
+
+            <Route path='/Product/*' element={<Product></Product>}></Route>
+            <Route path='/Orders' element={<Orders></Orders>}></Route>
 
             {/* <Route
               path='/Categories'

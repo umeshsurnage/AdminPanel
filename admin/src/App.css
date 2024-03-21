@@ -91,6 +91,9 @@
 .m-20{
   margin: 0 20px;
 }
+.mtb-20{
+  margin:20px 0
+}
 .logo img{
   width: 210px;
   padding-left: 20px;
@@ -117,12 +120,13 @@
 }
 /* breadcrumb */
 .breadcrumb {
-  background-color: #db0d58;
-  color: #fff
+  background-color: #ededed;
+  border-right:2px solid #ededed;
+  font-weight: bold
 }
 
 .breadcrumb a{
-  color:#fff;
+  color:#636363;
   text-decoration: none;
   font-weight: bold
 }
@@ -171,5 +175,28 @@
 .mb-20{
   margin-bottom: 20px
 }
-
-
+.mt-50{
+  margin-top: 50px
+}
+.subCategory img {
+  width: 50px;
+  height: 50px;
+}
+.subCategory span{
+  display: flex;
+  align-items: center;
+  gap:10px
+}
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center
+}
+.imgShow{
+  width: 100%;
+  height:171px;
+  text-align: center;
+  border: 1px solid #dddddd;
+  background: url('/public/selectImage.jpg') no-repeat center;
+}

@@ -40,6 +40,18 @@ const Sidebar = ({ menu, activeMenu }) => {
     {
       name: "Product",
       icon: <i className='fa-solid fa-shop'></i>,
+      children: [
+        {
+          name: "ProductList",
+          icon: <i className='m-20 fa-solid fa-angles-right'></i>,
+          route: "Product/ProductList",
+        },
+        {
+          name: "AddProduct",
+          icon: <i className='m-20 fa-solid fa-angles-right'></i>,
+          route: "Product/AddProduct",
+        },
+      ],
     },
     {
       name: "Orders",

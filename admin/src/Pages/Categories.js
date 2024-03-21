@@ -1,11 +1,9 @@
 import React from "react"
-import { Link, Route, Routes, Navigate } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import MainCategory from "./Categories/MainCategory"
 import SubCategory from "./Categories/SubCategory"
 import { AddMainCategories } from "./Categories/AddMainCategories"
-import { AddSubCategory } from "./Categories/AddSubCategory"
-import Container from "@mui/material/Container"
-import Grid from "@mui/material/Grid"
+import { AddSubCategories } from "./Categories/AddSubCategories"
 
 const Categories = () => {
   return (
@@ -22,11 +20,7 @@ const Categories = () => {
       </Grid> */}
 
       <Routes>
-        <Route
-          path='/Categories'
-          element={<MainCategory></MainCategory>}
-          // element={<Navigate to='/MainCategory' />}
-        ></Route>
+        <Route path='/' element={<MainCategory></MainCategory>}></Route>
         <Route
           path='/MainCategory'
           element={<MainCategory></MainCategory>}
@@ -40,8 +34,8 @@ const Categories = () => {
           element={<SubCategory></SubCategory>}
         ></Route>
         <Route
-          path='/SubCategory/AddSubCategory'
-          element={<AddSubCategory></AddSubCategory>}
+          path='/SubCategory/AddSubCategories'
+          element={<AddSubCategories></AddSubCategories>}
         ></Route>
       </Routes>
     </div>

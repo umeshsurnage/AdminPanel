@@ -10,7 +10,7 @@ import TableRow from "@mui/material/TableRow"
 import Paper from "@mui/material/Paper"
 import Button from "@mui/material/Button"
 import { useSelector, useDispatch } from "react-redux"
-import { deleteCategory, updateCategory } from "../../Redux/CategoriesSlice"
+import { deleteCategory, updateCategory } from "../Redux/CategoriesSlice"
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,7 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }))
 
-const MainCategory = () => {
+const SubCategory = () => {
   const categories = useSelector(
     (state) => state.CategoriesStore.mainCategories
   )
@@ -76,20 +76,8 @@ const MainCategory = () => {
   }
 
   return (
-    <div>
-      <h1>Main Category </h1>
-
-      <div className='display-right mb-20'>
-        <Button
-          variant='outlined'
-          className='btn-outline-primary'
-          onClick={() => {
-            Navigate("AddMainCategories")
-          }}
-        >
-          + Add Category
-        </Button>
-      </div>
+    <div className='subCategory'>
+      <h1>Order List </h1>
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label='customized table'>
@@ -97,7 +85,7 @@ const MainCategory = () => {
             <TableRow>
               <StyledTableCell>Id</StyledTableCell>
               <StyledTableCell>Category</StyledTableCell>
-              <StyledTableCell>Description</StyledTableCell>
+              <StyledTableCell>Total Items</StyledTableCell>
               <StyledTableCell>Created at</StyledTableCell>
               <StyledTableCell>Action</StyledTableCell>
               <StyledTableCell>Delete</StyledTableCell>
@@ -117,7 +105,10 @@ const MainCategory = () => {
                       onChange={(e) => handleInputChange(e, "category")}
                     />
                   ) : (
-                    category.category
+                    <span>
+                      <img src={category.img} />
+                      {category.category}
+                    </span>
                   )}
                 </StyledTableCell>
                 <StyledTableCell>
@@ -163,4 +154,4 @@ const MainCategory = () => {
   )
 }
 
-export default MainCategory
+export default SubCategory

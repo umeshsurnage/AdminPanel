@@ -2,6 +2,7 @@ import "./App.css"
 import { Route, Routes } from "react-router-dom"
 import Login from "./Login/Login"
 import Admin from "./Pages/Admin"
+import { Demo } from "./Demo"
 import { React } from "react"
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/Login' element={<Login></Login>}></Route>
+        <Route path='/Demo' element={<Demo></Demo>}></Route>
         <Route path='/Admin/*' element={<Admin></Admin>}></Route>
         <Route
           path='*'
